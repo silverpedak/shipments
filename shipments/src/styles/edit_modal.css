@@ -1,0 +1,80 @@
+/* BACKGROUND */
+.modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+/* CONTAINER */
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-top: 20rem;
+    /* width: 35rem; */
+    max-width: 100rem;
+    background: #FFFFFF;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0, 0.2);
+}
+
+
+/* HEADER */
+.modal-header {
+    display: flex;
+    justify-content: end;
+}
+.modal-close {
+    height: 4rem;
+    width: 3rem;
+    margin-right: 1.5rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+
+/* GRID WITH INPUTS */
+.grid {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 30fr 30fr 30fr;
+    grid-template-rows: 0.5fr; 
+    column-gap: 2rem;
+    row-gap: 1.5rem;
+/* 
+    padding: 2rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; */
+}
+
+.grid > label {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    height: 7rem;
+}
+label > input {
+    height: 3rem;
+    border-radius: 1rem ;
+    border: none;
+    padding-left:1rem ;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 5px 0 rgba(0,0,0, 0.1);
+}
+
+
+/* FOOTER */
+.modal-footer {
+    display: flex;
+    justify-content:center;
+    height: 10rem;
+    align-items: center;
+}

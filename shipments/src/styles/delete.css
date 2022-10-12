@@ -1,0 +1,31 @@
+.delete-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 30rem;
+    width: 35rem;
+    height: 15rem;
+    background: #FFFFFF;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0, 0.2);
+    text-align: center;
+}
+
+.del-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.del-mid {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.del-footer {
+    height: 5rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}

@@ -1,96 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import '../styles/style.css'
-// import columns from './columns'
-import Edit from './edit';
-import Modal from './modals/edit_modal';
-
-
-const ORDER_WIDTH = '225px';
-const DELIVERY_WIDTH = '125px';
-const STATUS_WIDTH = '125px';
-const CONSIGNEE_WIDTH = '250px';
-const EDIT_WIDTH = '150px';
-
+import { useSelector, useDispatch } from 'react-redux'
+import columns from './columns';
+import { fetchShipments } from '../features/shipmentsSlice';
+import LoadingSpinner from './spinner';
 
 
 export default function Table() {
-    const [data, setData] = useState([]);
+    const dispatch = useDispatch();
 
-    // GET data from api.
+    const shipments = useSelector(state => state.shipments.shipments);
+    const status = useSelector(state => state.shipments.status);
+    const error = useSelector(state => state.shipments.error);
+
+    //Load data from the api
     useEffect(() => {
-        const url = 'data.json';
-        axios.get(url)
-            .then(response => setData(response.data))
-            .catch(error => console.log(error.message));
+        if (status === 'idle') {
+            dispatch(fetchShipments())
+        }
+    }, [status, dispatch])
 
-    }, [])
+    let content;
 
-    function deleteShipment(row) {
-        const filtered = data.filter(element => {
-            return element.orderNo !== row.orderNo
-        })
-        setData(filtered);
+    if (status === 'loading') {
+        content = <LoadingSpinner />
+    } else if (status === 'succeeded') {
+        content = <DataTable
+            columns={columns}
+            data={shipments}
+            pagination
+        />
+    } else if (status === 'failed') {
+        content = <h1>{error}</h1>
     }
-
-    function updateShipment(initialValue, updatedValue) {
-        setData(prevData => {
-            const index = data.indexOf(initialValue);
-            const newData = [...prevData]
-            newData[index] = updatedValue;
-            return newData
-        })
-    }
-
-    const columns = [
-        {
-            name: 'ORDERNO',
-            selector: row => row.orderNo,
-            width: ORDER_WIDTH,
-        },
-        {
-            name: 'DELIVERYDATE',
-            selector: row => row.date,
-            maxWidth: DELIVERY_WIDTH,
-        },
-        {
-            name: 'CUSTOMER',
-            selector: row => row.customer,
-            sortable: true,
-        },
-        {
-            name: 'TRACKINGNO',
-            selector: row => row.trackingNo,
-            sortable: true,
-        },
-        {
-            name: 'STATUS',
-            selector: row => row.status,
-            sortable: true,
-            maxWidth: STATUS_WIDTH,
-        },
-        {
-            name: 'CONSIGNEE',
-            selector: row => row.consignee,
-            sortable: true,
-            maxWidth: CONSIGNEE_WIDTH,
-        },
-        {
-            name: '',
-            cell: (row) => <Edit row={row} deleteShipment={deleteShipment} updateShipment={updateShipment} />,
-            width: EDIT_WIDTH,
-        },
-    ];
 
     return (
         <div className="table-container">
-            <DataTable
-                columns={columns}
-                data={data}
-                pagination
-            />
-        </div>
+            {content}
+        </div >
     )
 }
-

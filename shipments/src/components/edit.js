@@ -3,55 +3,35 @@ import '../styles/style.css'
 import { ReactComponent as EditIcon } from "../assets/edit.svg"
 import { ReactComponent as DeleteIcon } from "../assets/delete.svg"
 import { useState } from 'react';
-import EditModal from './modals/edit_modal';
-import DeleteModal from './modals/delete_modal';
-
+import EditModal from '../features/edit';
+import DeleteModal from '../features/delete';
+import DeleteButton from './buttons/deleteButton';
+import EditButton from './buttons/editButton';
 
 // Retruns 2 buttons that handle editing and deleting.
-export default function Edit({ row, deleteShipment, updateShipment }) {
-
-    const [deleteModalOpen, setDeleteOpen] = useState(false);
+export default function Edit({ row }) {
     const [editModalOpen, setEditOpen] = useState(false);
+    const [deleteModalOpen, setDeleteOpen] = useState(false);
 
-    function handleEditOpen() {
+    const handleEditOpen = () => {
         setEditOpen(!editModalOpen);
     }
 
-    function handleDeleteOpen() {
+    const handleDeleteOpen = () => {
         setDeleteOpen(!deleteModalOpen);
-    }
-
-    function deleteRow() {
-        deleteShipment(row);
-        setDeleteOpen(false);
-    }
-
-    function updateRow(shipment) {
-        updateShipment(row, shipment);
-        setEditOpen(false);
     }
 
     return (
         <div className="buttons-container">
 
-            <button
-                className="edit btn"
-                onClick={handleEditOpen}>
-                <EditIcon className="icon" />
-            </button>
-
-            <button
-                className="delete btn"
-                onClick={handleDeleteOpen}>
-                <DeleteIcon className="icon" />
-            </button>
+            <EditButton onClick={handleEditOpen} />
+            <DeleteButton onClick={handleDeleteOpen} />
 
             {editModalOpen &&
-                <EditModal row={row} modalOpen={handleEditOpen} updateRow={updateRow} />}
+                <EditModal row={row} modalOpen={handleEditOpen} />}
 
             {deleteModalOpen &&
-                <DeleteModal row={row} modalOpen={handleDeleteOpen} deleteRow={deleteRow} />}
-
+                <DeleteModal row={row} modalOpen={handleDeleteOpen} />}
         </div >
     )
 }

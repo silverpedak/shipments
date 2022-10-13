@@ -6,7 +6,7 @@ import '../styles/edit.css';
 import { useDispatch } from 'react-redux';
 import { updateShipment } from './shipmentsSlice';
 import LoadingSpinner from '../components/spinner';
-import validateForm from '../helpers/validateForm';
+import validateForm from '../utils/validateForm';
 
 function EditModal({ row, modalOpen }) {
     const dispatch = useDispatch();

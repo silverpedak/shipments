@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ReactComponent as Clear } from "../assets/clear.svg";
 import EditButton from '../components/buttons/editButton';
-import ClearButton from '../components/buttons/clearButton';
+import ClearButton from '../components/buttons/closeButton';
 import '../styles/edit.css';
 import { useDispatch } from 'react-redux';
 import { updateShipment } from './shipmentsSlice';
@@ -41,7 +40,8 @@ function EditModal({ row, modalOpen }) {
     }
 
     //Update shipment details
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
         if (formError) {
             return
         }
@@ -76,7 +76,7 @@ function EditModal({ row, modalOpen }) {
 
     return (
         <div className="modal" onClick={handleClick}>
-            <div className="edit-container">
+            <div role="dialog" className="edit-container">
 
                 {pending ?
                     <LoadingSpinner />
@@ -86,7 +86,7 @@ function EditModal({ row, modalOpen }) {
                             <div className="error">{formError}</div>
                         </div>
 
-                        <div className="grid">
+                        <form className="grid">
                             <label>
                                 ORDERNO:
                                 <input
@@ -97,10 +97,11 @@ function EditModal({ row, modalOpen }) {
                                     name="orderNo"
                                 ></input>
                             </label>
-                            <label>
+                            <label htmlFor="date">
                                 DATE:
                                 <input
                                     type="text"
+                                    id="date"
                                     placeholder={date}
                                     onChange={handleChange}
                                     value={shipment.date}
@@ -147,7 +148,7 @@ function EditModal({ row, modalOpen }) {
                                     name="consignee"
                                 ></input>
                             </label>
-                        </div>
+                        </form>
 
                         <div className="modal-footer">
                             <EditButton onClick={handleSubmit} />

@@ -1,4 +1,4 @@
-import Edit from "./edit";
+import Edit from "../components/edit";
 
 const ORDER_WIDTH = '225px';
 const DELIVERY_WIDTH = '125px';

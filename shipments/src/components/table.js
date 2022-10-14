@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import DataTable from 'react-data-table-component';
 import '../styles/style.css'
 import { useSelector, useDispatch } from 'react-redux'
-import columns from './columns';
+import columns from '../data/columns';
 import { fetchShipments } from '../features/shipmentsSlice';
 import LoadingSpinner from './spinner';
 

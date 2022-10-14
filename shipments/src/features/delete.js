@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ReactComponent as Clear } from "../assets/clear.svg";
-import { ReactComponent as DeleteIcon } from "../assets/delete.svg";
 import '../styles/delete.css';
 import { useDispatch } from 'react-redux';
 import { deleteShipment } from './shipmentsSlice';
 import DeleteButton from '../components/buttons/deleteButton';
 import LoadingSpinner from '../components/spinner';
-import ClearButton from '../components/buttons/clearButton';
+import ClearButton from '../components/buttons/closeButton';
 
 
 
@@ -37,14 +35,18 @@ function DeleteModal({ row, modalOpen }) {
     //Close with Escape
     useEffect(() => {
         const close = (event) => {
-            event.key === "Escape" && modalOpen();
+            console.log(event.key)
+            if (event.key === "Escape") {
+                event.preventDefault();
+                modalOpen();
+            }
         }
         window.addEventListener('keydown', close);
     })
 
     return (
         <div className="modal" onClick={handleClick}>
-            <div className="delete-container">
+            <div role="dialog" className="delete-container">
 
                 {pending ?
                     <LoadingSpinner />

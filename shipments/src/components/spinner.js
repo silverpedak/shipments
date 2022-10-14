@@ -3,7 +3,7 @@ import '../styles/spinner.css'
 
 export default function LoadingSpinner() {
     return (
-        <div className="spinner-container">
+        <div aria-label="spinner" className="spinner-container">
             <div className="loading-spinner"></div>
         </div>
     );

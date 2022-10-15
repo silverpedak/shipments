@@ -3,11 +3,11 @@ import EditButton from '../components/buttons/editButton';
 import ClearButton from '../components/buttons/closeButton';
 import '../styles/edit.css';
 import { useDispatch } from 'react-redux';
-import { updateShipment } from './shipmentsSlice';
+import { updateShipment } from '../features/shipmentsSlice';
 import LoadingSpinner from '../components/spinner';
 import validateForm from '../utils/validateForm';
 
-function EditModal({ row, modalOpen }) {
+export default function EditModal({ row, modalOpen }) {
     const dispatch = useDispatch();
     const { orderNo, date, customer, trackingNo, status, consignee } = row;
 
@@ -68,7 +68,6 @@ function EditModal({ row, modalOpen }) {
     useEffect(() => {
         const close = (event) => {
             event.key === "Escape" && modalOpen();
-            // event.key === "Enter" && handleSubmit();
         }
         window.addEventListener('keydown', close);
         return () => window.removeEventListener('keydown', close);
@@ -151,12 +150,10 @@ function EditModal({ row, modalOpen }) {
                         </form>
 
                         <div className="modal-footer">
-                            <EditButton onClick={handleSubmit} />
+                            <EditButton onClick={handleSubmit} label="edit-button" />
                         </div>
                     </>}
             </div>
         </div >
     )
 }
-
-export default EditModal;

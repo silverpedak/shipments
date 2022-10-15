@@ -1,7 +1,7 @@
 export const ROW_1 = {
     orderNo: "1337",
     date: "10/16/2019",
-    customer: "Jeff Dahmer LLC",
+    customer: "ABC inc",
     trackingNo: "TP-724057-72553473-5647860",
     status: "'In Transit'",
     consignee: "Netflix Inc"

@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/delete.css';
 import { useDispatch } from 'react-redux';
-import { deleteShipment } from './shipmentsSlice';
+import { deleteShipment } from '../features/shipmentsSlice';
 import DeleteButton from '../components/buttons/deleteButton';
 import LoadingSpinner from '../components/spinner';
 import ClearButton from '../components/buttons/closeButton';
 
-
-
-
-function DeleteModal({ row, modalOpen }) {
+const DeleteModal = ({ row, modalOpen }) => {
     const dispatch = useDispatch();
     const { orderNo } = row;
     const [pending, setPending] = useState(false);
@@ -35,7 +32,6 @@ function DeleteModal({ row, modalOpen }) {
     //Close with Escape
     useEffect(() => {
         const close = (event) => {
-            console.log(event.key)
             if (event.key === "Escape") {
                 event.preventDefault();
                 modalOpen();
@@ -60,7 +56,7 @@ function DeleteModal({ row, modalOpen }) {
                         </span>
 
                         <div className="del-footer">
-                            <DeleteButton onClick={removeShipment} />
+                            <DeleteButton onClick={removeShipment} label="delete-button" />
                         </div>
                     </>}
 

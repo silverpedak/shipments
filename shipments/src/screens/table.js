@@ -4,7 +4,7 @@ import '../styles/style.css'
 import { useSelector, useDispatch } from 'react-redux'
 import columns from '../data/columns';
 import { fetchShipments } from '../features/shipmentsSlice';
-import LoadingSpinner from './spinner';
+import LoadingSpinner from '../components/spinner';
 
 
 export default function Table() {
@@ -32,7 +32,7 @@ export default function Table() {
             pagination
         />
     } else if (status === 'failed') {
-        content = <h1>{error}</h1>
+        content = <h1>Fetching data failed: <span>{error}</span></h1>
     }
 
     return (

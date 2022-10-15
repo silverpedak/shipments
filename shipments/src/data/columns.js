@@ -1,11 +1,10 @@
-import Edit from "../components/edit";
+import Buttons from "../components/buttons";
 
 const ORDER_WIDTH = '225px';
 const DELIVERY_WIDTH = '125px';
 const STATUS_WIDTH = '125px';
 const CONSIGNEE_WIDTH = '250px';
 const EDIT_WIDTH = '150px';
-
 
 const columns = [
     {
@@ -42,7 +41,7 @@ const columns = [
     },
     {
         name: '',
-        cell: (row) => <Edit row={row} />,
+        cell: (row) => <Buttons row={row} />,
         width: EDIT_WIDTH,
     },
 ];

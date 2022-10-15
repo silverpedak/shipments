@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import axios from 'axios';
-import fetchData from '../utils/fetchData';
+import fetchData from '../api/fetchData';
 
 const initialState = {
     shipments: [],
@@ -9,12 +8,6 @@ const initialState = {
 }
 
 export const fetchShipments = createAsyncThunk('shipments/fetchShipments', async () => {
-    // try {
-    //     const response = await axios.get('https://my.api.mockaroo.com/shipments.json?key=5e0b62d0');
-    //     return response.data
-    // } catch (err) {
-    //     return Promise.reject(err.message)
-    // }
     const response = await fetchData();
     return response
 })

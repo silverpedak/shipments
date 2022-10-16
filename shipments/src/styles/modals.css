@@ -9,7 +9,14 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* CONTAINER */
+.modal-footer {
+    display: flex;
+    justify-content:center;
+    height: 10rem;
+    align-items: center;
+}
+
+/* EDIT MODAL */
 .edit-container {
     display: flex;
     flex-direction: column;
@@ -22,6 +29,7 @@
     height: 35rem;
 }
 
+/* Error message */
 .error {
     margin: 0 auto;
     width: fit-content;
@@ -65,10 +73,24 @@ label > input {
     box-shadow: 0 3px 5px 0 rgba(0,0,0, 0.1);
 }
 
-/* FOOTER */
-.modal-footer {
+
+/* DELETE MODAL */
+.del-container {
     display: flex;
-    justify-content:center;
-    height: 10rem;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 28rem;
+    width: 35rem;
+    height: 15rem;
+    background: #FFFFFF;
+    box-shadow: 0 5px 5px 0 rgba(0,0,0, 0.2);
+    text-align: center;
+}
+
+.del-body {
+    font-size: 2rem;
+    display: flex;
+    justify-content:space-evenly ;
     align-items: center;
 }

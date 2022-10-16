@@ -1,4 +1,4 @@
-/* BUTTONS (EDIT & DELETE) */
+/* Buttons cell in the table that contains edit and delete button*/
 .buttons-container {
     display: flex;
     flex-direction: row;
@@ -6,6 +6,7 @@
     width: 12rem;
 }
 
+/* Edit and delete button common features */
 .btn {
     display: flex;
     justify-content: center;
@@ -26,20 +27,21 @@
     filter: brightness(0.9);
 }
 
+/* button colors */
 .edit {
     background: linear-gradient(#15a3fa,#62c3ff );
 }
-
 .delete {
     background: linear-gradient(#fa1515,#ff8b8b );
 }
 
+/* The image inside a button */
 .icon {
     height: 2rem;
-    width: auto;
 }
 
-.clear {
+/* Close button */
+.close {
     display: flex;
     float: right;
     height: 3rem;

@@ -6,7 +6,6 @@ import DeleteModal from './deleteModal';
 import DeleteButton from './buttons/deleteButton';
 import EditButton from './buttons/editButton';
 
-// Returns 2 buttons that handle editing and deleting.
 export default function Buttons({ row }) {
     const [editModalOpen, setEditOpen] = useState(false);
     const [deleteModalOpen, setDeleteOpen] = useState(false);

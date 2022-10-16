@@ -4,7 +4,7 @@ import '../styles/style.css'
 import { useSelector, useDispatch } from 'react-redux'
 import columns from '../data/columns';
 import { fetchShipments } from '../features/shipmentsSlice';
-import LoadingSpinner from '../components/spinner';
+import LoadingSpinner from './spinner';
 
 
 export default function Table() {
@@ -14,23 +14,27 @@ export default function Table() {
     const status = useSelector(state => state.shipments.status);
     const error = useSelector(state => state.shipments.error);
 
-    //Load data from the api
+    //Load data from the api.
     useEffect(() => {
         if (status === 'idle') {
             dispatch(fetchShipments())
         }
     }, [status, dispatch])
 
+
+    //Render content according to API request status.
     let content;
 
     if (status === 'loading') {
         content = <LoadingSpinner />
+
     } else if (status === 'succeeded') {
         content = <DataTable
             columns={columns}
             data={shipments}
             pagination
         />
+
     } else if (status === 'failed') {
         content = <h1>Fetching data failed: <span>{error}</span></h1>
     }

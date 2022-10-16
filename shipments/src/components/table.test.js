@@ -58,10 +58,6 @@ test('Deletes shipment when delete-button is clicked inside DeleteModal', async 
 test('Changes shipment values when input values are changed and edit-button is pressed', async () => {
     const newOrderNo = '12345';
     const newDate = '4/20/2020';
-    const newCustomer = 'Foo LLC';
-    const newTrackingNo = '678910';
-    const newStatus = 'Shipped';
-    const newConsignee = 'Bar LLC';
 
     renderWithProviders(<Table />);
     await waitForElementToBeRemoved(() => screen.queryByLabelText(/spinner/i));
@@ -72,10 +68,6 @@ test('Changes shipment values when input values are changed and edit-button is p
 
     const orderNoInput = screen.getByLabelText(/orderno/i);
     const dateInput = screen.getByLabelText(/date/i);
-    const customerInput = screen.getByLabelText(/customer/i);
-    const trackingNoInput = screen.getByLabelText(/trackingno/i);
-    const statusInput = screen.getByLabelText(/status/i);
-    const consigneeInput = screen.getByLabelText(/consignee/i);
 
     //CLear inputs
     while (orderNoInput.value !== '') {
@@ -84,25 +76,9 @@ test('Changes shipment values when input values are changed and edit-button is p
     while (dateInput.value !== '') {
         userEvent.type(dateInput, '{Backspace}');
     }
-    while (customerInput.value !== '') {
-        userEvent.type(customerInput, '{Backspace}');
-    }
-    while (trackingNoInput.value !== '') {
-        userEvent.type(trackingNoInput, '{Backspace}');
-    }
-    while (statusInput.value !== '') {
-        userEvent.type(statusInput, '{Backspace}');
-    }
-    while (consigneeInput.value !== '') {
-        userEvent.type(consigneeInput, '{Backspace}');
-    }
 
     userEvent.type(orderNoInput, newOrderNo);
     userEvent.type(dateInput, newDate);
-    userEvent.type(customerInput, newCustomer);
-    userEvent.type(trackingNoInput, newTrackingNo);
-    userEvent.type(statusInput, newStatus);
-    userEvent.type(consigneeInput, newConsignee);
 
     userEvent.click(screen.getByRole('button', { name: /edit-button/i }));
 
@@ -112,8 +88,4 @@ test('Changes shipment values when input values are changed and edit-button is p
 
     expect(screen.getByText(newOrderNo)).toBeInTheDocument();
     expect(screen.getByText(newDate)).toBeInTheDocument();
-    expect(screen.getByText(newCustomer)).toBeInTheDocument();
-    expect(screen.getByText(newTrackingNo)).toBeInTheDocument();
-    expect(screen.getByText(newStatus)).toBeInTheDocument();
-    expect(screen.getByText(newConsignee)).toBeInTheDocument();
 })

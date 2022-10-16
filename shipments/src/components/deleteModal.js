@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import '../styles/delete.css';
+import React, { useState } from 'react';
+import '../styles/modals.css';
 import { useDispatch } from 'react-redux';
 import { deleteShipment } from '../features/shipmentsSlice';
 import DeleteButton from '../components/buttons/deleteButton';
 import LoadingSpinner from '../components/spinner';
 import ClearButton from '../components/buttons/closeButton';
+import useHotKey from '../hooks/useHotKey';
+
 
 const DeleteModal = ({ row, modalOpen }) => {
     const dispatch = useDispatch();
@@ -24,38 +26,30 @@ const DeleteModal = ({ row, modalOpen }) => {
         modalOpen();
     }
 
-    //Close with click outside the container
+    //Close with click outside the container.
     const handleClick = (event) => {
         event.target.className === "modal" && modalOpen();
     }
 
-    //Close with Escape
-    useEffect(() => {
-        const close = (event) => {
-            if (event.key === "Escape") {
-                event.preventDefault();
-                modalOpen();
-            }
-        }
-        window.addEventListener('keydown', close);
-    })
+    // Close with Escape key.
+    useHotKey("Escape", () => modalOpen());
 
     return (
         <div className="modal" onClick={handleClick}>
-            <div role="dialog" className="delete-container">
+            <div role="dialog" className="del-container">
 
                 {pending ?
                     <LoadingSpinner />
                     : <>
-                        <div className="del-header">
+                        <div className="modal-header">
                             <ClearButton handleClose={handleClose} />
                         </div>
 
-                        <span className="del-mid">
+                        <div className="del-body">
                             Are you sure?
-                        </span>
+                        </div>
 
-                        <div className="del-footer">
+                        <div className="modal-footer">
                             <DeleteButton onClick={removeShipment} label="delete-button" />
                         </div>
                     </>}

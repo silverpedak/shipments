@@ -5,7 +5,7 @@ import { ReactComponent as Clear } from "../../assets/clear.svg";
 export default function CloseButton({ handleClose }) {
     return (
         <button
-            className="clear"
+            className="close"
             onClick={handleClose}
             aria-label="close-button">
             <Clear

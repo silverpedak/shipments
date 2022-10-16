@@ -14,18 +14,25 @@ test('Renders EditModal with correct inputs and buttons', () => {
     expect(screen.getByLabelText(/trackingno:/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/status:/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/consignee:/i)).toBeInTheDocument();
-
     expect(screen.getByRole('button', { name: /edit-button/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /close-button/i })).toBeInTheDocument();
 })
 
 
-test('Fires openModal when close-button is pressed', () => {
+test('Fires openModal when close-button is clicked', () => {
     renderWithProviders(<EditModal row={ROW_1} modalOpen={modalOpen} />)
 
     userEvent.click(screen.getByRole('button', { name: /close-button/i }));
     expect(modalOpen).toBeCalledTimes(1);
 })
+
+test('Fires openModal when Escape is pressed', () => {
+    renderWithProviders(<EditModal row={ROW_1} modalOpen={modalOpen} />)
+
+    userEvent.keyboard('{Escape}')
+    expect(modalOpen).toBeCalledTimes(1);
+})
+
 
 test('Message displayed when input value(s) empty, edit-button disabled', () => {
     const store = setupStore(INITIAL_SHIPMENTS);

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import EditButton from '../components/buttons/editButton';
 import ClearButton from '../components/buttons/closeButton';
-import '../styles/edit.css';
+import '../styles/modals.css';
 import { useDispatch } from 'react-redux';
 import { updateShipment } from '../features/shipmentsSlice';
 import LoadingSpinner from '../components/spinner';
 import validateForm from '../utils/validateForm';
+import useHotKey from '../hooks/useHotKey';
+
 
 export default function EditModal({ row, modalOpen }) {
     const dispatch = useDispatch();
@@ -24,7 +26,8 @@ export default function EditModal({ row, modalOpen }) {
         ...row,
     });
 
-    //Form validation
+
+    // Form validation after each keystroke.
     useEffect(() => {
         setFormError(validateForm(shipment))
     }, [shipment])
@@ -39,7 +42,7 @@ export default function EditModal({ row, modalOpen }) {
         })
     }
 
-    //Update shipment details
+    //Update shipment details. If form is not valid, will not call dispatch.
     const handleSubmit = (event) => {
         event.preventDefault();
         if (formError) {
@@ -64,14 +67,9 @@ export default function EditModal({ row, modalOpen }) {
         event.target.className === "modal" && modalOpen();
     }
 
-    //Handle keydown events
-    useEffect(() => {
-        const close = (event) => {
-            event.key === "Escape" && modalOpen();
-        }
-        window.addEventListener('keydown', close);
-        return () => window.removeEventListener('keydown', close);
-    })
+    //Close with Escape.
+    useHotKey('Escape', () => modalOpen());
+
 
     return (
         <div className="modal" onClick={handleClick}>
@@ -86,65 +84,70 @@ export default function EditModal({ row, modalOpen }) {
                         </div>
 
                         <form className="grid">
-                            <label>
+                            <label htmlFor="orderNo">
                                 ORDERNO:
                                 <input
                                     type="text"
+                                    name="orderNo"
+                                    id="orderNo"
                                     placeholder={orderNo}
                                     onChange={handleChange}
                                     value={shipment.orderNo}
-                                    name="orderNo"
                                 ></input>
                             </label>
                             <label htmlFor="date">
                                 DATE:
                                 <input
                                     type="text"
+                                    name="date"
                                     id="date"
                                     placeholder={date}
                                     onChange={handleChange}
                                     value={shipment.date}
-                                    name="date"
                                 ></input>
                             </label>
-                            <label>
+                            <label htmlFor="customer">
                                 CUSTOMER:
                                 <input
                                     type="text"
+                                    name="customer"
+                                    id="customer"
                                     placeholder={customer}
                                     onChange={handleChange}
                                     value={shipment.customer}
-                                    name="customer"
                                 ></input>
                             </label>
-                            <label>
+                            <label htmlFor="trackingNo">
                                 TRACKINGNO:
                                 <input
                                     type="text"
+                                    name="trackingNo"
+                                    id="trackingNo"
                                     placeholder={trackingNo}
                                     onChange={handleChange}
                                     value={shipment.trackingNo}
-                                    name="trackingNo"
                                 ></input>
                             </label>
-                            <label>
+                            <label htmlFor="status">
                                 STATUS:
                                 <input
                                     type="text"
+                                    name="status"
+                                    id="status"
                                     placeholder={status}
                                     onChange={handleChange}
                                     value={shipment.status}
-                                    name="status"
                                 ></input>
                             </label>
-                            <label>
+                            <label htmlFor="consignee">
                                 CONSIGNEE:
                                 <input
                                     type="text"
+                                    name="consignee"
+                                    id="consignee"
                                     placeholder={consignee}
                                     onChange={handleChange}
                                     value={shipment.consignee}
-                                    name="consignee"
                                 ></input>
                             </label>
                         </form>

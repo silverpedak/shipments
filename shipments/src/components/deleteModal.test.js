@@ -14,12 +14,21 @@ test('Renders DeleteModal with text and buttons ', () => {
 })
 
 
-
 test('fires modalOpen when close-button is clicked', () => {
     renderWithProviders(<DeleteModal row={ROW_1} modalOpen={modalOpen} />);
 
     expect(screen.getByRole('dialog')).toBeInTheDocument();
 
     userEvent.click(screen.getByRole('button', { name: /close-button/i }));
+    expect(modalOpen).toBeCalledTimes(1);
+})
+
+
+test('fires modalOpen when Escape is pressed', () => {
+    renderWithProviders(<DeleteModal row={ROW_1} modalOpen={modalOpen} />);
+
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+    userEvent.keyboard('{Escape}');
     expect(modalOpen).toBeCalledTimes(1);
 })

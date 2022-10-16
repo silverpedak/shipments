@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import shipmentsReducer from '../features/shipmentsSlice';
 
 
+//Creates a new Redux store instance every time it's called. Used in tests, to create a <Provider> component to wrap around the component being tested.
 export function renderWithProviders(
     ui,
     {
@@ -20,10 +21,6 @@ export function renderWithProviders(
     return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
 }
 
-
-// import { combineReducers, configureStore } from '@reduxjs/toolkit'
-
-// Create the root reducer separately so we can extract the RootState type
 const rootReducer = combineReducers({
     shipments: shipmentsReducer
 })

@@ -5,18 +5,36 @@ header {
 }
 
 .table-container {
-    max-width: 140rem;
+    width: 140rem;
     margin: 3rem;
     margin-top: 1rem;
     padding-top: 1rem;
     text-align: center;
+    margin: 0 auto;
 }
 
-/* TABLE CENTERED */
-@media (min-width: 1460px) {
+
+/* RESPONSIVE DATATABLE, Hiding columns is handled in /data/columns.js (hide: ..) */
+@media (max-width: 599px) {
     .table-container {
-        margin: 0 auto;
-        margin-top: 1rem;
+        width: 38rem;
     }
 }
 
+@media (min-width: 600px) and (max-width: 959px) {
+    .table-container {
+        width: 60rem;
+    }
+}
+
+@media (min-width: 960px) and (max-width: 1280px) {
+    .table-container {
+        width: 80rem;
+    }
+}
+
+@media (min-width: 1280px) and (max-width: 1460px) {
+    .table-container {
+        max-width: 128rem;
+    }
+}

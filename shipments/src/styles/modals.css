@@ -45,17 +45,9 @@
     grid-template-rows: 0.5fr; 
     column-gap: 2rem;
     row-gap: 1.5rem;
-
-    /* for smaller screen(mobile etc)  */
-    /* padding: 2rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly; */
 }
 
-/* LABELS */
+/* LABELS for inputs */
 .grid > label {
     display: flex;
     flex-direction: column;
@@ -93,4 +85,22 @@ label > input {
     display: flex;
     justify-content:space-evenly ;
     align-items: center;
+}
+
+
+
+/* EditModal was broken with smaller screen. */
+@media (max-width: 640px) {
+    .grid {
+        padding: 1rem;
+        padding-left: 5rem;
+        padding-right: 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .edit-container {
+        margin-top: 10rem;
+        height: 62rem;
+    }
 }

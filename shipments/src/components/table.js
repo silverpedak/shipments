@@ -33,6 +33,7 @@ export default function Table() {
             columns={columns}
             data={shipments}
             pagination
+            highlightOnHover
         />
 
     } else if (status === 'failed') {

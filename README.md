@@ -11,9 +11,8 @@ Each row in the table includes shipment details and two buttons that handle open
 
 To run this project, follow these instructions:
 1. Clone this repo
-2. Navigate to the shipments folder `cd shipments`
-3. Install dependecies `npm install`
-4. Start dev server `npm start`
+2. Install dependecies `npm install`
+3. Start dev server `npm start`
 
 
 ## Running tests

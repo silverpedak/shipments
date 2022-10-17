@@ -18,7 +18,7 @@ To run this project, follow these instructions:
 
 ## Running tests
 
-- Run `npm test`
+- Run `npm test .`
 
 ## Technologies used
 
